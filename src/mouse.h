@@ -24,6 +24,12 @@ extern "C"
 		CENTER_BUTTON = kCGMouseButtonCenter
 	};
 	typedef CGMouseButton MMMouseButton;
+	
+	enum __MMMouseWheelDirection	{
+		DIRECTION_DOWN = -1,
+		DIRECTION_UP 	 = 1
+	};
+	typedef int MMMouseWheelDirection;
 
 #elif defined(USE_X11)
 
@@ -33,6 +39,12 @@ extern "C"
 		RIGHT_BUTTON = 3
 	};
 	typedef unsigned int MMMouseButton;
+	
+	enum __MMMouseWheelDirection	{
+		DIRECTION_DOWN = -1,
+		DIRECTION_UP 	 = 1
+	};
+	typedef int MMMouseWheelDirection;
 
 #elif defined(IS_WINDOWS)
 
@@ -42,6 +54,12 @@ extern "C"
 		RIGHT_BUTTON = 3
 	};
 	typedef unsigned int MMMouseButton;
+	
+	enum __MMMouseWheelDirection	{
+		DIRECTION_DOWN = -1,
+		DIRECTION_UP 	 = 1
+	};
+	typedef unsigned int MMMouseWheelDirection;
 
 #else
 	#error "No mouse button constants set for platform"
@@ -72,6 +90,10 @@ void toggleMouse(bool down, MMMouseButton button);
 
 /* Clicks the mouse with the given button in the current position. */
 void clickMouse(MMMouseButton button);
+
+/* Scrolls the mouse in the stated direction. 
+ * TODO: Add a smoothly scroll mouse next. */
+void scrollMouse(int scrollMagnitude, MMMouseWheelDirection scrollDirection);
 
 #endif /* MOUSE_H */
 
